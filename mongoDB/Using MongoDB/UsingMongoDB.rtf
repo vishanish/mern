@@ -1,0 +1,54 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2636
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\csgray\c0;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 use my_first_db\
+\
+db.createCollection(\'91students\'92)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\fs22 \cf2 \CocoaLigature0 \
+db.students.insertMany([\{name:'student1\'92, home_state:\'92california\'92, lucky_number:2, birthday:\{month:1, day:2, year:1990\}\},\{name:'student2\'92, home_state:\'92california\'92, lucky_number:6, birthday:\{month:3, day:9, year:1993\}\}, \{name:'student3\'92, home_state:\'92nevada\'92, lucky_number:10, birthday:\{month:7, day:15, year:1997\}\}, \{name:'student4', home_state:\'92Washington\'92, lucky_number:14, birthday:\{month:9, day:33, year:1999\}\}, \{name:'student5', home_state:'oregon', lucky_number:18, birthday:\{month:12, day:31, year:2001\}\}])\
+\
+db.students.find()\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\
+db.students.find(\{home_state:'california'\})\
+\
+db.students.find(\{lucky_number:\{$gt:3\}\})\
+\
+db.students.find(\{lucky_number:\{$lte:10\}\})\
+\
+db.students.find(\{$and:[\{lucky_number:\{$gte:1\}\},\{lucky_number:\{$lte:9\}\}]\})\
+\
+db.students.updateMany(\{\},\{$addToSet:\{interests:\{$each:['coding','brunch','MongoDB']\}\}\})\
+\
+db.students.update(\{name:'student1'\},\{$push:\{interests:'skating'\}\})\
+db.students.update(\{name:'student2'\},\{$push:\{interests:'snowboarding'\}\})\
+db.students.update(\{name:'student3'\},\{$push:\{interests:'guitar'\}\})\
+db.students.update(\{name:'student4'\},\{$push:\{interests:'computers'\}\})\
+db.students.update(\{name:'student5'\},\{$push:\{interests:'boxing'\}\})\
+\
+db.students.update(\{name:'student3'\},\{$push:\{interests:'taxes'\}\})\
+\
+db.students.update(\{name:'student3'\},\{$pull:\{interests:'taxes'\}\})\
+\
+db.students.deleteMany(\{home_state: 'california'\})\
+\
+db.students.deleteOne(\{name: 'student5'\})\
+\
+db.students.deleteOne(\{$and:[\{lucky_number:\{$gt:5\}\}]\})\
+\
+db.students.updateMany(\{\}, \{$set:\{number_of_belts: 0\}\})\
+\
+db.students.updateMany(\{home_state:\'92washington\'92\}, \{$inc:\{number_of_belts: 1\}\})\
+\
+db.students.updateMany(\{\}, \{$rename:\{'number_of_belts': 'belts_earned'\}\})\
+\
+db.students.updateMany(\{\}, [\{$unset:['lucky_number']\}])\
+\
+db.students.updateMany(\{\}, \{$set:\{updated_at: new Timestamp()\}\})\
+}
